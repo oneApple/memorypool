@@ -3,7 +3,7 @@
 
 void MemBlockList::createList(MemBlock *pmem,int num)
 {
-	assert(pmem != NULL && num != NULL);
+	assert(pmem != NULL && num != 0);
 	this->plist = pmem;
 	int i;
 	for(i = 1;i < num;++ i)

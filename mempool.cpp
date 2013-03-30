@@ -5,6 +5,8 @@
 
 #define ALIGN 8
 
+MemPool* MemPool::_instance = NULL;
+
 static size_t check_align_addr(void*& pBuf)  
 {  
 	size_t align = 0;  

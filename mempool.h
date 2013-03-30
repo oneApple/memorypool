@@ -12,11 +12,34 @@ private:
 	int iunitcount;
 	MemUnit *punit;
 	void *pmem;
-	int imemcount;
+	size_t imemcount;
 	MemBlockList blockpool;
 	MemBlockList freeblock;
+private:
+	static MemPool *_instance;
+	class release{
+	public:
+		~release()
+		{
+			if(MemPool::_instance != NULL)
+			{
+				delete MemPool::_instance;
+				MemPool::_instance = NULL;
+			}
+		}
+	};
+	static release rel;
 public:
+	static MemPool *getInstance()
+	{
+		if(MemPool::_instance == NULL)
+		{
+			MemPool::_instance = new MemPool(new char[1000],1000);
+		}
+		return MemPool::_instance;
+	}
 	MemPool(void *mem,int size);
+public:
 	void *getMem(size_t size);
 	void freeMem(void *mem);
 public:
@@ -29,3 +52,4 @@ public:
 		printf("...........................\n");
 	}
 };
+

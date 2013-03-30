@@ -8,7 +8,10 @@ private:
 	MemBlock *plist;
 	size_t icount;
 public:
-	MemBlockList():icount(0),plist(NULL){}
+	MemBlockList():icount(0)
+	{
+		plist = NULL;
+	}
 public:
 	void createList(MemBlock * pmem,int num);
 	void pushFront(MemBlock *block);
